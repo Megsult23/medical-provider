@@ -26,6 +26,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.net.URL
 import java.text.NumberFormat
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Currency
 import java.util.Date
@@ -343,5 +344,31 @@ class MainUtils {
 
             })
         }
+    fun getDateNumberOnly(serverDate: String?): String? {
+        var serverDate = serverDate
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
+        try {
+            val dateObj = sdf.parse(serverDate)
+            serverDate = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(dateObj)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        return serverDate
+    }
+
+    fun getTimeOnly(serverDate: String?): String? {
+        var serverDate = serverDate
+//    val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
+        sdf.timeZone = TimeZone.getTimeZone("UTC +3")
+        try {
+            val dateObj = sdf.parse(serverDate)
+            serverDate = SimpleDateFormat("hh:mm aa", Locale.ENGLISH).format(dateObj)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        return serverDate
+    }
+
     }
 }

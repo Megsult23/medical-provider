@@ -11,4 +11,20 @@
     <string name="want_logout">Are you sure you want to logout?</string>
     <string name="text_info">Info</string>
     <string name="welcome">Welcome</string>
+    <string name="password">Password</string>
+    <string name="phone_number">Username</string>
+    <string name="login">Login</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="invalid_user_name">Invalid username</string>
+    <string name="must_be_at_least_8_characters">*Must be at least 8 characters</string>
+    <string name="report_id">ID</string>
+    <string name="appointment">Appointment</string>
+    <string name="report_date">Date</string>
+    <string name="report_time">Time</string>
+    <string name="reporter_name">Reporter</string>
+    <string name="report_service">Service</string>
+    <string name="details">Details</string>
+    <string name="car_requests">Car Requests</string>
+    <string name="logout">Logout</string>
+    <string name="language">Language</string>
 </resources>

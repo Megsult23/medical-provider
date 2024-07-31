@@ -6,7 +6,6 @@ import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.ColorRes
@@ -32,7 +31,6 @@ fun AppCompatActivity.setUpToolBar(
     toolbarBinding: MainToolbarBinding,
     title: String? = "",
     isHome: Boolean = false,
-    isBookDetails: Boolean = false,
     @DrawableRes navigationIcon: Int? = null
 ) = toolbarBinding.execute {
     if (supportActionBar == null) {
@@ -55,16 +53,6 @@ fun AppCompatActivity.setUpToolBar(
         } else {
             toolbarBinding.tvTitle.visibility = View.VISIBLE
             toolbarBinding.tvTitle.text = title
-        }
-
-        if (isBookDetails) {
-            toolbarBinding.tvTitle.hide()
-            toolbarBinding.civUserImage.hide()
-            toolbarBinding.tvWelcome.hide()
-            toolbarBinding.tvUserName.hide()
-            toolbarBinding.llUserInfo.show()
-
-            toolbarBinding.llUserInfo.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
         }
     }
 

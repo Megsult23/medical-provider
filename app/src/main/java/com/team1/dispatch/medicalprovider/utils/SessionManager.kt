@@ -7,6 +7,7 @@ import android.net.NetworkCapabilities
 import androidx.appcompat.app.AppCompatDelegate
 import com.team1.dispatch.medicalprovider.data.models.UserModel
 import com.team1.dispatch.medicalprovider.utils.Constants.Companion.ARABIC
+import com.team1.dispatch.medicalprovider.utils.Constants.Companion.ENGLISH
 import com.team1.dispatch.medicalprovider.utils.PreferenceKeys.Companion.FIRST_TIME
 import com.team1.dispatch.medicalprovider.utils.PreferenceKeys.Companion.USER_LANGUAGE
 import javax.inject.Inject
@@ -51,7 +52,7 @@ class SessionManager @Inject constructor(
         return result
     }
 
-    fun getLanguage(): String = sharedPreferences.getString(USER_LANGUAGE, ARABIC) ?: ARABIC
+    fun getLanguage(): String = sharedPreferences.getString(USER_LANGUAGE, ENGLISH) ?: ENGLISH
     fun setLanguage(language: String) =
         sharedPreferences.edit().putString(USER_LANGUAGE, language).apply()
 

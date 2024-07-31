@@ -1,6 +1,6 @@
 package com.team1.dispatch.medicalprovider.adapters
 
-/*
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncDifferConfig
@@ -8,35 +8,30 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListUpdateCallback
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.RequestManager
-import com.team1.dispatch.medicalprovider.utils.Constants
-import com.team1.dispatch.medicalprovider.utils.MainUtils
-import java.util.Locale
+import com.team1.dispatch.medicalprovider.data.models.CarRequestModel
+import com.team1.dispatch.medicalprovider.databinding.ItemCarRequestBinding
+import com.team1.dispatch.medicalprovider.ui.carRequestDetails.CarRequestDetailsActivity
+import com.team1.dispatch.medicalprovider.utils.Constants.Companion.CAR_REQUEST_KEY
+import com.team1.dispatch.medicalprovider.utils.MainUtils.Companion.getDateNumberOnly
+import com.team1.dispatch.medicalprovider.utils.MainUtils.Companion.getTimeOnly
 
-class CarRequestsAdapter(
-    private val requestManager: RequestManager,
-    private val callback: ArticleItemCallback
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CarRequestsAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val TAG = "CarRequestsAdapter"
-    private val DIFF_CALLBACK =
-        object : DiffUtil.ItemCallback<ArticleModel>() {
-            override fun areItemsTheSame(
-                oldItem: ArticleModel,
-                newItem: ArticleModel
-            ): Boolean {
-                return oldItem.id == newItem.id
-            }
-
-            override fun areContentsTheSame(
-                oldItem: ArticleModel,
-                newItem: ArticleModel
-            ): Boolean {
-                return oldItem == newItem
-            }
+    private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<CarRequestModel>() {
+        override fun areItemsTheSame(
+            oldItem: CarRequestModel, newItem: CarRequestModel
+        ): Boolean {
+            return oldItem.id == newItem.id
         }
+
+        override fun areContentsTheSame(
+            oldItem: CarRequestModel, newItem: CarRequestModel
+        ): Boolean {
+            return oldItem == newItem
+        }
+    }
     private val differ = AsyncListDiffer(
-        CustomRecyclerChangeCallback(this),
-        AsyncDifferConfig.Builder(DIFF_CALLBACK).build()
+        CustomRecyclerChangeCallback(this), AsyncDifferConfig.Builder(DIFF_CALLBACK).build()
     )
 
     inner class CustomRecyclerChangeCallback(private val adapter: CarRequestsAdapter) :
@@ -59,36 +54,11 @@ class CarRequestsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when (viewType) {
-            LOADING_TYPE -> {
-                LoadingItemViewHolder(
-                    ItemLoadingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                )
-            }
-
-            ERROR_TYPE -> {
-                RetryViewHolder(
-                    ItemRetryVideoBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    ),
-                    callback
-                )
-            }
-
-            else -> {
-                CustomItemViewHolder(
-                    ItemHomeArticleBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    ),
-                    requestManager,
-                    callback
-                )
-            }
-        }
+        return CustomItemViewHolder(
+            ItemCarRequestBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
+        )
     }
 
     override fun getItemCount(): Int {
@@ -100,73 +70,34 @@ class CarRequestsAdapter(
             is CustomItemViewHolder -> {
                 holder.bind(differ.currentList[position])
             }
-
-            is RetryViewHolder -> {
-                holder.bind(differ.currentList[position])
-            }
         }
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return when {
-            differ.currentList[position].isLoading -> LOADING_TYPE
-            differ.currentList[position].isError -> ERROR_TYPE
-            else -> ITEM_TYPE
-        }
-    }
 
-    fun submitList(list: List<ArticleModel>) {
+    fun submitList(list: List<CarRequestModel>) {
         differ.submitList(list)
     }
 
 
     class CustomItemViewHolder(
-        private val binding: ItemHomeArticleBinding,
-        private val requestManager: RequestManager,
-        private val callback: ArticleItemCallback
+        private val binding: ItemCarRequestBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ArticleModel) = with(binding.root) {
+        fun bind(model: CarRequestModel) = with(binding.root) {
             binding.apply {
-                requestManager.load(item.image).into(ivArticleImage)
-                tvArticleTitle.text = item.title
-                tvPostTime.text =
-                    MainUtils.getTimeAgo(context, item.createdAt ?: "", Locale.getDefault())
-                root.setOnClickListener {
-                    callback.onArticleItemClicked(absoluteAdapterPosition)
+                tvServiceType.text = model.serviceType ?: ""
+                tvReporterName.text = model.patientName ?: ""
+                tvReportTime.text = getTimeOnly(model.createdAt)
+                tvCaseDate.text = getDateNumberOnly(model.createdAt)
+                tvAppointment.text = model.startDate
+                tvCaseId.text = (model.id ?: 0).toString()
+                btnDetails.setOnClickListener {
+                    context.startActivity(
+                        Intent(context, CarRequestDetailsActivity::class.java).putExtra(
+                            CAR_REQUEST_KEY, model
+                        )
+                    )
                 }
             }
         }
     }
-
-    class LoadingItemViewHolder(binding: ItemLoadingBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        init {
-            binding.root.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
-        }
-    }
-
-    class RetryViewHolder(
-        private val binding: ItemRetryVideoBinding,
-        private val callback: ArticleItemCallback
-    ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ArticleModel) = with(binding.root) {
-            binding.apply {
-                tvError.text = item.title
-
-                root.setOnClickListener {
-                    callback.onArticleItemClicked(absoluteAdapterPosition, flag = Constants.RETRY)
-                }
-            }
-        }
-    }
-
-    interface ArticleItemCallback {
-        fun onArticleItemClicked(position: Int, flag: String = "")
-    }
-
-    companion object {
-        const val ITEM_TYPE = 0
-        const val LOADING_TYPE = 1
-        const val ERROR_TYPE = 2
-    }
-}*/
+}

@@ -15,9 +15,9 @@ class AuthViewModel @Inject constructor(private val repo: AuthRepository) : View
     var userModel: UserModel? = null
 
     val loginFormState = MutableLiveData<LoginFormState>()
-    fun checkLoginFormValidation(isPhoneValid: Boolean, password: String) {
-        if (!isPhoneValid) {
-            loginFormState.value = LoginFormState(isPhoneValid = false)
+    fun checkLoginFormValidation(userName: String, password: String) {
+        if (userName.isBlank()) {
+            loginFormState.value = LoginFormState(isUserNameValid = false)
         } else if (!Validation.isValidPassword(password)) {
             loginFormState.value = LoginFormState(isPasswordValid = false)
         } else {

@@ -13,6 +13,7 @@ class Constants {
         const val IS_RESTART = "IsRestart"
         const val ARABIC = "ar"
         const val ENGLISH = "en"
+        const val CAR_REQUEST_KEY = "car_request_key"
         val EXPECTED_INTERNET_ERROR_MESSAGES =
             listOf(UNABLE_TODO_OPERATION_WO_INTERNET, UNABLE_TO_RESOLVE_HOST)
     }
