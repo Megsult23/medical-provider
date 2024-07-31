@@ -1,0 +1,96 @@
+[versions]
+agp = "8.5.0"
+kotlin = "1.9.0"
+coreKtx = "1.13.1"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+activity = "1.9.1"
+constraintlayout = "2.1.4"
+hiltVersion = "2.48.1"
+lifecycleKotlinVersion = "2.6.2"
+loggingInterceptorVersion = "4.12.0"
+retrofitVersion = "2.9.0"
+lifecycleExtensionVersion = "2.2.0"
+glideVersion = "4.16.0"
+splashScreenVersion = "1.0.1"
+roundImageViewVersion = "2.3.0"
+circleImageViewVersion = "3.1.0"
+swipeRefreshLayoutVersion = "1.1.0"
+sdpVersion = "1.1.0"
+materialDialogVersion = "3.3.0"
+quickPermissionsKotlinVersion = "0.4.0"
+socketIo = "2.0.0"
+
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+#Hilt
+hiltDependency = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltVersion" }
+hiltKapt = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltVersion" }
+
+
+#Lifecycle
+viewModelKotlinDependency = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleKotlinVersion" }
+viewModelSavedStateDependency = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-savedstate", version.ref = "lifecycleKotlinVersion" }
+liveDataDependency = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleKotlinVersion" }
+
+#Logging Interceptor
+loggingInterceptorDependency = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "loggingInterceptorVersion" }
+
+#Retrofit
+retrofitDependency = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofitVersion" }
+gsonDependency = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofitVersion" }
+
+#Lifecycle Extension
+lifecycleExtensionDependency = { group = "androidx.lifecycle", name = "lifecycle-extensions", version.ref = "lifecycleExtensionVersion" }
+
+
+#Glide
+glideDependency = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glideVersion" }
+glideKapt = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glideVersion" }
+
+#Splash Screen
+splashScreenDependency = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashScreenVersion" }
+
+#RoundImageView
+roundImageViewDependency = { group = "com.makeramen", name = "roundedimageview", version.ref = "roundImageViewVersion" }
+
+#CircleImageView
+circleImageViewDependency = { group = "de.hdodenhof", name = "circleimageview", version.ref = "circleImageViewVersion" }
+
+#SwipeRefreshLayout
+swipeRefreshLayoutDependency = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swipeRefreshLayoutVersion" }
+
+#SDP
+sdpDependency = { group = "com.intuit.sdp", name = "sdp-android", version.ref = "sdpVersion" }
+sspDependency = { group = "com.intuit.ssp", name = "ssp-android", version.ref = "sdpVersion" }
+
+#QuickPermissionsKotlin
+quickPermissionsKotlinDependency = { group = "com.github.quickpermissions", name = "quickpermissions-kotlin", version.ref = "quickPermissionsKotlinVersion" }
+
+
+#Socket
+socketIo = { group = "io.socket", name = "socket.io-client", version.ref = "socketIo" }
+
+
+#MaterialDialog
+materialDialogCoreDependency = { group = "com.afollestad.material-dialogs", name = "core", version.ref = "materialDialogVersion" }
+materialDialogInputDependency = { group = "com.afollestad.material-dialogs", name = "input", version.ref = "materialDialogVersion" }
+materialDialogDateTimeDependency = { group = "com.afollestad.material-dialogs", name = "datetime", version.ref = "materialDialogVersion" }
+
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }

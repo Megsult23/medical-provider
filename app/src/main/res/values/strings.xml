@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Dispatch Medical Provider</string>
+    <!--Common-->
+    <string name="text_ok">OK</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_error">Error</string>
+    <string name="text_success">Success</string>
+    <string name="your_session_has_expired">Your session has been expired, please login again.</string>
+    <string name="are_you_sure">Are you sure</string>
+    <string name="text_yes">Yes</string>
+    <string name="want_logout">Are you sure you want to logout?</string>
+    <string name="text_info">Info</string>
+    <string name="welcome">Welcome</string>
+</resources>
