@@ -102,6 +102,9 @@ dependencies {
     implementation(libs.materialDialogInputDependency)
     implementation(libs.materialDialogDateTimeDependency)
 
+    // Agora Voice and Video SDK
+    implementation(libs.agora.sdk)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

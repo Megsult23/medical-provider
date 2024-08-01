@@ -49,6 +49,18 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.DispatchMedicalProvider" />
+
+        <activity
+            android:name=".ui.contactParamedic.ContactParamedicActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.DispatchMedicalProvider" />
+
+        <activity
+            android:name=".ui.contactParamedic.CallParamedicActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.DispatchMedicalProvider" />
     </application>
 
 </manifest>

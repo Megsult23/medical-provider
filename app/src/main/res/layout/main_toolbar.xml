@@ -45,8 +45,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_pro_bold"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp"
-            tools:text="Felopater Adel" />
+            android:textSize="@dimen/_12ssp" />
 
     </LinearLayout>
 

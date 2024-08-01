@@ -1,11 +1,12 @@
 package com.team1.dispatch.medicalprovider.di
 
-import com.team1.dispatch.medicalprovider.utils.SessionManager
 import com.team1.dispatch.medicalprovider.network.ApiInterface
+import com.team1.dispatch.medicalprovider.network.SocketIOManager
 import com.team1.dispatch.medicalprovider.repositories.repo_impl.AuthRepositoryImpl
 import com.team1.dispatch.medicalprovider.repositories.repo_impl.HomeRepositoryImpl
 import com.team1.dispatch.medicalprovider.repositories.repo_interface.AuthRepository
 import com.team1.dispatch.medicalprovider.repositories.repo_interface.HomeRepository
+import com.team1.dispatch.medicalprovider.utils.SessionManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,6 +34,19 @@ object RepositoryModule {
     fun providesHomeRepository(
         apiInterface: ApiInterface,
         sessionManager: SessionManager
+    ): HomeRepository {
+        return HomeRepositoryImpl(
+            apiInterface = apiInterface,
+            sessionManager = sessionManager
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun providesContactParamedicRepository(
+        apiInterface: ApiInterface,
+        sessionManager: SessionManager,
+        socketIOManager: SocketIOManager
     ): HomeRepository {
         return HomeRepositoryImpl(
             apiInterface = apiInterface,

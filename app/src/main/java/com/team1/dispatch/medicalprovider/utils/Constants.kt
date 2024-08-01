@@ -14,6 +14,10 @@ class Constants {
         const val ARABIC = "ar"
         const val ENGLISH = "en"
         const val CAR_REQUEST_KEY = "car_request_key"
+        const val CAR_REQUEST_ID_KEY = "car_request_id_key"
+        const val VOICE_CALL = "voice"
+        const val VIDEO_CALL = "video"
+        const val INCOMING_CALL_DATA = "incoming_call_data"
         val EXPECTED_INTERNET_ERROR_MESSAGES =
             listOf(UNABLE_TODO_OPERATION_WO_INTERNET, UNABLE_TO_RESOLVE_HOST)
     }

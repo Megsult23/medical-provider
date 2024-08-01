@@ -23,6 +23,7 @@ sdpVersion = "1.1.0"
 materialDialogVersion = "3.3.0"
 quickPermissionsKotlinVersion = "0.4.0"
 socketIo = "2.0.0"
+agora = "4.2.2"
 
 
 [libraries]
@@ -89,6 +90,8 @@ materialDialogCoreDependency = { group = "com.afollestad.material-dialogs", name
 materialDialogInputDependency = { group = "com.afollestad.material-dialogs", name = "input", version.ref = "materialDialogVersion" }
 materialDialogDateTimeDependency = { group = "com.afollestad.material-dialogs", name = "datetime", version.ref = "materialDialogVersion" }
 
+#agora
+agora-sdk = { group = "io.agora.rtc", name = "full-sdk", version.ref = "agora" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
