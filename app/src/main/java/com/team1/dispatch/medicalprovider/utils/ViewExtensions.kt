@@ -39,7 +39,6 @@ fun AppCompatActivity.setUpToolBar(
         supportActionBar?.setDisplayHomeAsUpEnabled(!isHome)
         if (!isHome) {
             toolbarBinding.tvTitle.show()
-            toolbarBinding.llUserInfo.hide()
             supportActionBar?.setHomeAsUpIndicator(
                 ContextCompat.getDrawable(
                     this@setUpToolBar,
@@ -49,9 +48,8 @@ fun AppCompatActivity.setUpToolBar(
         }
 
         if (title.isNullOrEmpty()) {
-            toolbarBinding.tvTitle.visibility = View.GONE
+            toolbarBinding.tvTitle.text = getString(R.string.home)
         } else {
-            toolbarBinding.tvTitle.visibility = View.VISIBLE
             toolbarBinding.tvTitle.text = title
         }
     }

@@ -21,6 +21,7 @@
     <string name="must_be_at_least_8_characters">*Must be at least 8 characters</string>
 
     <!--Car Request-->
+    <string name="home">Home</string>
     <string name="report_id">ID</string>
     <string name="appointment">Appointment</string>
     <string name="report_date">Date</string>

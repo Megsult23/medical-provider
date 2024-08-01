@@ -19,7 +19,6 @@ import com.team1.dispatch.medicalprovider.utils.Constants.Companion.VOICE_CALL
 import com.team1.dispatch.medicalprovider.utils.setUpToolBar
 import com.team1.dispatch.medicalprovider.viewModels.ContactParamedicViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -39,8 +38,7 @@ class ContactParamedicActivity : BaseActivity() {
 
     private var selection = VOICE_CALL
 
-    @Inject
-    lateinit var messageAdapter: MessagesAdapter
+    private var messageAdapter: MessagesAdapter? = null
 
     private val messagesList = ArrayList<MessageModel>()
 
@@ -60,7 +58,7 @@ class ContactParamedicActivity : BaseActivity() {
             isHome = false,
             title = getString(R.string.paramedic)
         )
-
+        messageAdapter = MessagesAdapter(sessionManager)
         carRequestId = intent.getStringExtra("car_request_id")
         binding.apply {
             rvMessages.adapter = messageAdapter

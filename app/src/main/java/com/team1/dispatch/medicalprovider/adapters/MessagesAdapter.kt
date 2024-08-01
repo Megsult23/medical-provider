@@ -1,7 +1,7 @@
 package com.team1.dispatch.medicalprovider.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListUpdateCallback
 import androidx.recyclerview.widget.RecyclerView
 import com.team1.dispatch.medicalprovider.data.models.MessageModel
-import com.team1.dispatch.medicalprovider.databinding.ItemCarRequestBinding
-import com.team1.dispatch.medicalprovider.ui.carRequestDetails.CarRequestDetailsActivity
-import com.team1.dispatch.medicalprovider.utils.Constants.Companion.CAR_REQUEST_KEY
-import com.team1.dispatch.medicalprovider.utils.MainUtils.Companion.getDateNumberOnly
-import com.team1.dispatch.medicalprovider.utils.MainUtils.Companion.getTimeOnly
+import com.team1.dispatch.medicalprovider.databinding.ItemMessageBinding
+import com.team1.dispatch.medicalprovider.utils.MainUtils.Companion.getDateTime
+import com.team1.dispatch.medicalprovider.utils.SessionManager
 
-class MessagesAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MessagesAdapter(
+    private val sessionManager: SessionManager
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val TAG = "MessagesAdapter"
     private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MessageModel>() {
         override fun areItemsTheSame(
@@ -55,9 +55,12 @@ class MessagesAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return CustomItemViewHolder(
-            ItemCarRequestBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            )
+            ItemMessageBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            ),
+            sessionManager
         )
     }
 
@@ -80,22 +83,22 @@ class MessagesAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     class CustomItemViewHolder(
-        private val binding: ItemCarRequestBinding
+        private val binding: ItemMessageBinding,
+        private val sessionManager: SessionManager
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(model: MessageModel) = with(binding.root) {
             binding.apply {
-                tvServiceType.text = model.serviceType ?: ""
-                tvReporterName.text = model.patientName ?: ""
-                tvReportTime.text = getTimeOnly(model.createdAt)
-                tvCaseDate.text = getDateNumberOnly(model.createdAt)
-                tvAppointment.text = model.startDate
-                tvCaseId.text = (model.id ?: 0).toString()
-                btnDetails.setOnClickListener {
-                    context.startActivity(
-                        Intent(context, CarRequestDetailsActivity::class.java).putExtra(
-                            CAR_REQUEST_KEY, model
-                        )
-                    )
+                if (model.senderUnitName == sessionManager.getUserName()) {
+                    inMsgTxtSender.root.visibility = View.VISIBLE
+                    inMsgTxtReceiver.root.visibility = View.GONE
+
+                    inMsgTxtSender.tvMessage.text = model.text
+                    inMsgTxtSender.tvCreatedAt.text = getDateTime(model.createdAt ?: "")
+                } else {
+                    inMsgTxtReceiver.root.visibility = View.VISIBLE
+                    inMsgTxtSender.root.visibility = View.GONE
+                    inMsgTxtReceiver.tvMessage.text = model.text
+                    inMsgTxtReceiver.tvCreatedAt.text = getDateTime(model.createdAt ?: "")
                 }
             }
         }

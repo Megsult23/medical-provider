@@ -3,8 +3,10 @@ package com.team1.dispatch.medicalprovider.di
 import com.team1.dispatch.medicalprovider.network.ApiInterface
 import com.team1.dispatch.medicalprovider.network.SocketIOManager
 import com.team1.dispatch.medicalprovider.repositories.repo_impl.AuthRepositoryImpl
+import com.team1.dispatch.medicalprovider.repositories.repo_impl.ContactParamedicRepositoryImp
 import com.team1.dispatch.medicalprovider.repositories.repo_impl.HomeRepositoryImpl
 import com.team1.dispatch.medicalprovider.repositories.repo_interface.AuthRepository
+import com.team1.dispatch.medicalprovider.repositories.repo_interface.ContactParamedicRepository
 import com.team1.dispatch.medicalprovider.repositories.repo_interface.HomeRepository
 import com.team1.dispatch.medicalprovider.utils.SessionManager
 import dagger.Module
@@ -47,10 +49,11 @@ object RepositoryModule {
         apiInterface: ApiInterface,
         sessionManager: SessionManager,
         socketIOManager: SocketIOManager
-    ): HomeRepository {
-        return HomeRepositoryImpl(
+    ): ContactParamedicRepository {
+        return ContactParamedicRepositoryImp(
             apiInterface = apiInterface,
-            sessionManager = sessionManager
+            sessionManager = sessionManager,
+            socketIOManager = socketIOManager
         )
     }
 }

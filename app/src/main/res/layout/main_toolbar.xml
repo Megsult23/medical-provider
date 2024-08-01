@@ -1,52 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_50sdp"
-    android:gravity="center"
-    android:paddingEnd="@dimen/_14sdp"
+    android:layout_height="?attr/actionBarSize"
     android:background="@color/move"
+    android:gravity="center"
     app:contentInsetLeft="0dp"
     app:contentInsetRight="0dp"
-    app:contentInsetStartWithNavigation="0dp">
+    app:contentInsetStartWithNavigation="0dp"
+    app:navigationIcon="@drawable/ic_back">
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_pro_bold"
-        android:gravity="center"
-        android:textAlignment="center"
+        android:gravity="top|start"
+        android:text="asdasd"
+        android:textAlignment="viewStart"
         android:textColor="@color/white"
-        android:textSize="@dimen/_16ssp"
-        tools:text="Home" />
+        android:textSize="@dimen/_14ssp" />
 
-    <LinearLayout
-        android:id="@+id/ll_user_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/tv_welcome"
+    <!--    <LinearLayout
+            android:id="@+id/ll_user_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_2sdp"
-            android:fontFamily="@font/sf_pro_bold"
-            android:text="@string/welcome"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp" />
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:fontFamily="@font/sf_pro_semi_bold"
+                android:text="@string/welcome"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp" />
 
 
-        <TextView
-            android:id="@+id/tv_user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_bold"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp" />
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_semi_bold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp" />
 
-    </LinearLayout>
+        </LinearLayout>-->
 
 </androidx.appcompat.widget.Toolbar>

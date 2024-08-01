@@ -6,7 +6,7 @@ import com.team1.dispatch.medicalprovider.repositories.repo_interface.ContactPar
 import com.team1.dispatch.medicalprovider.utils.SessionManager
 import javax.inject.Inject
 
-class SupportRepositoryImpl @Inject constructor(
+class ContactParamedicRepositoryImp @Inject constructor(
     val apiInterface: ApiInterface,
     val sessionManager: SessionManager,
     val socketIOManager: SocketIOManager
