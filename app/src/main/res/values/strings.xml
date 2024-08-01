@@ -10,6 +10,8 @@
     <string name="text_yes">Yes</string>
     <string name="want_logout">Are you sure you want to logout?</string>
     <string name="text_info">Info</string>
+
+    <!--Login-->
     <string name="welcome">Welcome</string>
     <string name="password">Password</string>
     <string name="phone_number">Username</string>
@@ -17,6 +19,8 @@
     <string name="welcome_back">Welcome Back!</string>
     <string name="invalid_user_name">Invalid username</string>
     <string name="must_be_at_least_8_characters">*Must be at least 8 characters</string>
+
+    <!--Car Request-->
     <string name="report_id">ID</string>
     <string name="appointment">Appointment</string>
     <string name="report_date">Date</string>
@@ -44,10 +48,12 @@
     <string name="address">Address</string>
     <string name="destination_info">Destination</string>
     <string name="request_8345">Request #8345</string>
-    <string name="type_your_message">Type your message...</string>
+
+    <!--Contact Paramedic-->
+    <string name="type_your_message">Type your message…</string>
     <string name="paramedic">Paramedic</string>
     <string name="voice">Voice</string>
     <string name="video">Video</string>
-    <string name="ringing">Ringing...</string>
-    <string name="call_not_answered">Call Not Answered...</string>
+    <string name="ringing">Ringing…</string>
+    <string name="call_not_answered">Call Not Answered…</string>
 </resources>
